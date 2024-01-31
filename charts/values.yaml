@@ -1,7 +1,7 @@
 namespace: gg-techgarden
 image:
   repository: ghcr.io/techgardencode/dailies-www
-  tag: none
+  tag: c25f340acec73f705ac608edebae6b9dfab96cbc
 host:
   name: dailies.techgarden.gg
 replicas: 3
