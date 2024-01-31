@@ -1,0 +1,30 @@
+<div class="h-full flex flex-col bg-zinc-100">
+  <div class="grid grid-cols-6">
+    <button
+      *ngFor="let group of groups"
+      class="group text-[#F3697F] relative inline-block text-4xl focus:outline-none focus:ring ring-zinc-600/50 rounded-lg m-2"
+      [ngClass]="
+        selectedGroupId === group.id
+          ? 'font-extrabold'
+          : 'font-bold'
+      "
+      (click)="selectedGroupId = group.id"
+    >
+      <span
+        class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-[#BF5364] transition-transform group-hover:translate-x-1 group-hover:translate-y-1 group-focus:translate-x-1 group-focus:translate-y-1 rounded-lg group-active:translate-x-0 group-active:translate-y-0"
+        [ngClass]="
+          selectedGroupId === group.id
+            ? 'translate-x-1 translate-y-1'
+            : 'translate-x-0.5 translate-y-0.5'
+        "
+      ></span>
+
+      <span class="relative block bg-white py-2 rounded-lg border border-[#BF5364]">
+        {{ group.displayName }}
+      </span>
+    </button>
+  </div>
+  <div class="grow">
+    <app-task-list [groupId]="selectedGroupId"> </app-task-list>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div
+  class="relative z-20"
+  id="addTaskModal"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+>
+  <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div
+    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+    [@showHideBg]="isVisible ? 'show' : 'hide'"
+  ></div>
+
+  <div class="fixed inset-0 z-20 w-screen overflow-y-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+    >
+      <!--
+        Modal panel, show/hide based on modal state.
+
+        Entering: "ease-out duration-300"
+          From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          To: "opacity-100 translate-y-0 sm:scale-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100 translate-y-0 sm:scale-100"
+          To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      -->
+      <div
+        [@showHideForm]="isVisible ? 'show' : 'hide'"
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg"
+      >
+        <form class="mt-5" action="#">
+          <img
+            class="mx-auto h-10 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
+            alt="Your Company"
+          />
+          <h2
+            class="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
+          >
+            Add a task
+          </h2>
+          <div class="bg-white px-4 pb-4 sm:p-6 sm:pb-4 space-y-6">
+            <div>
+              <label
+                for="title"
+                class="block text-sm font-medium leading-6 text-gray-900"
+                >Title</label
+              >
+              <div class="mt-2">
+                <input type="title" name="title" id="title" autocomplete="title" class="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+
+
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between">
+                <label
+                  for="description"
+                  class="block text-sm font-medium leading-6 text-gray-900"
+                  >Description</label
+                >
+              </div>
+              <div class="mt-2">
+                <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
+
+              </div>
+            </div>
+          </div>
+          <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button
+              class="inline-flex w-full justify-center group relative text-2xl focus:outline-none focus:ring rounded-lg font-bold text-white my-2 sm:ml-3 sm:w-auto"
+              type="submit"
+            >
+              <span
+                class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-[#639991] transition-transform group-hover:translate-x-1 group-hover:translate-y-1 rounded-lg group-active:translate-x-0 group-active:translate-y-0"
+              ></span>
+
+              <span
+                class="relative w-full bg-[#7EC3B9] border border-[#639991] px-4 py-2 rounded-lg"
+              >
+                Add
+              </span>
+            </button>
+            <button
+              class="inline-flex w-full justify-center group relative text-2xl focus:outline-none focus:ring rounded-lg font-bold text-white my-2 sm:w-auto"
+              (click)="isVisible = false"
+            >
+              <span
+                class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-[#BF5364] transition-transform group-hover:translate-x-1 group-hover:translate-y-1 rounded-lg group-active:translate-x-0 group-active:translate-y-0"
+              ></span>
+
+              <span
+                class="relative w-full bg-[#F3697F] border border-[#BF5364] px-4 py-2 rounded-lg"
+              >
+                Cancel
+              </span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
