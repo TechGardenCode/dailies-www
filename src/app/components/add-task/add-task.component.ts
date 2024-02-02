@@ -12,6 +12,9 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { TaskService } from 'src/app/services/task.service';
+import { Task, TaskStatus } from 'src/app/types/task.type';
 
 @Component({
   selector: 'app-add-task',
@@ -39,14 +42,14 @@ import {
         'show',
         style({
           opacity: 1,
-          transform: 'translateY(0)'
+          transform: 'translateY(0)',
         })
       ),
       state(
         'hide',
         style({
           opacity: 0,
-          transform: 'translateY(1rem)'
+          transform: 'translateY(1rem)',
         })
       ),
       transition('hide => show', [animate('300ms ease-out')]),
@@ -70,6 +73,11 @@ export class AddTaskComponent {
   lastFocusableElement = this.focusableContent
     ? this.focusableContent[this.focusableContent.length - 1]
     : this.firstFocusableElement;
+
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly taskService: TaskService
+  ) {}
 
   @Input()
   set isVisible(isVisible: boolean) {
@@ -133,6 +141,22 @@ export class AddTaskComponent {
         this.isVisible = false;
         return;
     }
+  }
+
+  taskForm = this.fb.nonNullable.group({
+    title: this.fb.nonNullable.control('', {
+      validators: [Validators.required],
+    }),
+    description: this.fb.nonNullable.control('', {
+      validators: [Validators.required],
+    })
+  });
+
+  addTask() {
+    const task: Task = {...this.taskForm.getRawValue(), status: 'NEW'};
+    this.taskService.addTask(task);
+    this.taskForm.reset();
+    this.isVisible = false;
   }
 
   handleTabPress(e: KeyboardEvent) {

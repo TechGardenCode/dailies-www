@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskListItemComponent } from './components/task-list-item/task-list-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddTaskComponent,
     HomeComponent,
     TaskListComponent,
-    TaskListItemComponent
+    TaskListItemComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -38,7 +38,7 @@
         [@showHideForm]="isVisible ? 'show' : 'hide'"
         class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg"
       >
-        <form class="mt-5" action="#">
+        <form class="mt-5" [formGroup]="taskForm" (ngSubmit)="addTask()">
           <img
             class="mx-auto h-10 w-auto"
             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&amp;shade=600"
@@ -57,9 +57,14 @@
                 >Title</label
               >
               <div class="mt-2">
-                <input type="title" name="title" id="title" autocomplete="title" class="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-
-
+                <input
+                  type="title"
+                  name="title"
+                  id="title"
+                  autocomplete="title"
+                  formControlName="title"
+                  class="block px-3 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
               </div>
             </div>
 
@@ -72,8 +77,14 @@
                 >
               </div>
               <div class="mt-2">
-                <textarea id="description" name="description" rows="3" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required></textarea>
-
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="3"
+                  formControlName="description"
+                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  required
+                ></textarea>
               </div>
             </div>
           </div>

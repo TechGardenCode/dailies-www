@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   groups = [
     {
       id: 0,
@@ -40,4 +41,17 @@ export class HomeComponent {
   ];
 
   selectedGroupId = 0;
+
+  constructor(private readonly taskService: TaskService) {}
+
+  ngOnInit(): void {
+    this.taskService.getTaskList(
+      this.groups.find((g) => g.id === this.selectedGroupId)?.view
+    );
+  }
+
+  selectGroup(group: any) {
+    this.selectedGroupId = group.id;
+    this.taskService.getTaskList(group.view);
+  }
 }

@@ -26,6 +26,8 @@
         <div class="grow">{{ task.description }}</div>
         <input
           type="checkbox"
+          [checked]="task.status === 'COMPLETE'"
+          (click)="toggleTaskStatus(task)"
           class="mx-4 my-auto h-7 w-7 rounded-full border-gray-200 bg-white shadow-sm checked:bg-[#B1C475] checked:text-[#B1C475] focus:ring-[#C78459] focus:checked:ring-[#B1C475] hover:ring-[#C78459] hover:checked:ring-[#B1C475]"
         />
       </div>

@@ -1,6 +1,6 @@
 <app-add-task [(isVisible)]="addTaskModalVisible"></app-add-task>
 <div
-  *ngIf="taskList && taskList.length; else taskListLoading"
+  *ngIf="taskList; else taskListLoading"
   class="flex flex-col m-2"
 >
   <button

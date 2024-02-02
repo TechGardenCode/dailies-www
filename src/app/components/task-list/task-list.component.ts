@@ -9,14 +9,14 @@ import { TaskService } from 'src/app/services/task.service';
 })
 export class TaskListComponent {
   _groupId!: number;
-  taskList: any[] = [];
+  taskList?: any[];
   taskListSub!: Subscription;
-  addTaskModalVisible = true;
+  addTaskModalVisible = false;
 
   constructor(private readonly taskService: TaskService) {}
 
   initTaskList() {
-    this.taskListSub = this.taskService.getTask(this.groupId).subscribe({
+    this.taskListSub = this.taskService.taskListSubject.subscribe({
       next: (data) => {
         this.taskList = data;
       },
@@ -27,7 +27,7 @@ export class TaskListComponent {
   set groupId(groupId: number) {
     if (this._groupId !== groupId) {
       this.taskListSub?.unsubscribe();
-      this.taskList = [];
+      this.taskList = undefined;
     }
     this._groupId = groupId;
     this.initTaskList();
